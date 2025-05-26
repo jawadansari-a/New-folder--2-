@@ -1,40 +1,33 @@
 import tkinter as tk
+def add():
+    stri = f"{entry.get()} : {str.get()}"
+    listbox.insert(tk.END, stri)
+    str.set(value="select one")
 
-class AddSubtractApp:
-    def __init__(self, root):
-        self.root = root
-        self.root.title("Add and Subtract")
-        self.root.geometry("300x200")
-        self.root.configure(bg="#e6f2ff")
-
-        self.value = 0
-
-        # Label to show the current value
-        self.value_label = tk.Label(root, text=str(self.value), font=("Arial", 36, "bold"), bg="#e6f2ff", fg="#003366")
-        self.value_label.pack(pady=20)
-
-        button_frame = tk.Frame(root, bg="#e6f2ff")
-        button_frame.pack()
-
-        # Add button
-        add_btn = tk.Button(button_frame, text="Add", font=("Arial", 14), bg="#4CAF50", fg="white", width=8, command=self.add)
-        add_btn.grid(row=0, column=0, padx=10)
-
-        # Subtract button
-        subtract_btn = tk.Button(button_frame, text="Subtract", font=("Arial", 14), bg="#f44336", fg="white", width=8, command=self.subtract)
-        subtract_btn.grid(row=0, column=1, padx=10)
-
-    def add(self):
-        self.value += 1
-        self.value_label.config(text=str(self.value))
-
-    def subtract(self):
-        self.value -= 1
-        self.value_label.config(text=str(self.value))
+root = tk.Tk()
+root.geometry("300x300")
+root.title("Counter")
 
 
-if __name__ == "__main__":
-    root = tk.Tk()
-    app = AddSubtractApp(root)
-    root.mainloop()
+label = tk.Label(root, text="EVENT: ")
+label.grid(row=0,column=0,pady=5)
 
+entry = tk.Entry(root)
+entry.grid(row= 0, column=1, pady=10)
+
+label1 = tk.Label(root, text="Priority: ")
+label1.grid(row=1,column=0,pady=5)
+
+list = ["Low", "Medium", "High"]
+str = tk.StringVar(value="Select one")
+
+drop = tk.OptionMenu(root,str,*list)
+drop.grid(row=1, column=1)
+
+button1 = tk.Button(root, text="Add event", command=add, foreground="blue")
+button1.grid(row=2, columnspan=2, padx=20,pady=10)
+
+listbox = tk.Listbox(root,width=50)
+listbox.grid(row=3, columnspan=3)
+
+root.mainloop()
